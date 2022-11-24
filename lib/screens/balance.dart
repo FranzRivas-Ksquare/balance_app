@@ -49,7 +49,9 @@ class _MyBalancePageState extends State<MyBalancePage> {
                   SizedBox(
                     width: 100,
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed('/create-bill');
+                        },
                         style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll<Color>(Colors.white),
                         ),

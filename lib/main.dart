@@ -19,7 +19,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         backgroundColor: Colors.white70,
       ),
-      home: CreateBill(),
+      home: MyBalancePage(),
+      routes: {
+        '/create-bill': (context) => CreateBill(),
+      },
     );
   }
 }
