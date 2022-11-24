@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class MyBalancePage extends StatefulWidget {
+  const MyBalancePage({super.key});
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyBalancePage> createState() => _MyBalancePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyBalancePageState extends State<MyBalancePage> {
   late String balance = '\$10,000';
 
   @override
