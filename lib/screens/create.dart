@@ -1,4 +1,7 @@
+import 'package:balance/providers/bill.provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:balance/models/bill.model.dart';
 
 enum TypeBill { income, expense }
 
@@ -18,7 +21,9 @@ class _CreateBillState extends State<CreateBill> {
 
   TextEditingController _descriptionCtrl = TextEditingController();
 
-  TypeBill? _character = TypeBill.income;
+  // DateTime.now()
+
+  TypeBill? _typeBill = TypeBill.income;
 
   @override
   Widget build(BuildContext context){
@@ -37,10 +42,10 @@ class _CreateBillState extends State<CreateBill> {
                     children: <Widget>[
                       Radio<TypeBill>(
                         value: TypeBill.income,
-                        groupValue: _character,
+                        groupValue: _typeBill,
                         onChanged: (TypeBill? value) {
                           setState(() {
-                            _character = value;
+                            _typeBill = value;
                           });
                         },
                       ),
@@ -48,10 +53,10 @@ class _CreateBillState extends State<CreateBill> {
                       const SizedBox(width: 50),
                       Radio<TypeBill>(
                         value: TypeBill.expense,
-                        groupValue: _character,
+                        groupValue: _typeBill,
                         onChanged: (TypeBill? value) {
                           setState(() {
-                            _character = value;
+                            _typeBill = value;
                           });
                         },
                       ),
@@ -105,7 +110,25 @@ class _CreateBillState extends State<CreateBill> {
                     margin: const EdgeInsets.fromLTRB(10, 15, 10, 5),
                     child: ElevatedButton(
                         onPressed: () {
-                          if(_formKey.currentState!.validate()) {}
+                          if(_formKey.currentState!.validate()) {
+
+                            Bill register = Bill(
+                              title: _titleCtrl.text,
+                              type: _typeBill.toString(),
+                              amount: _typeBill == TypeBill.expense
+                                  ? num.tryParse(_amountCtrl.text)! * -1
+                                  : num.tryParse(_amountCtrl.text)!,
+                              date: DateTime.now().toIso8601String(),
+                              description: _descriptionCtrl.text,
+                            );
+
+                            Provider.of<BillProvider>(
+                                context,
+                                listen: false)
+                                .addBill(register);
+                            Navigator.pop(context);
+
+                          }
                         },
                         child: const Text(
                           'SUBMIT',

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:balance/providers/bill.provider.dart';
 
 class MyBalancePage extends StatefulWidget {
   const MyBalancePage({super.key});
@@ -12,7 +14,7 @@ class _MyBalancePageState extends State<MyBalancePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEEEEEE),
+      backgroundColor: const Color(0xFFEEEEEE),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -69,7 +71,26 @@ class _MyBalancePageState extends State<MyBalancePage> {
                 ],
               ),
             ),
-            Bill(),
+            Container(
+              margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+              height: 400,
+              child: Consumer<BillProvider>(
+                builder: ((context, obj, child) {
+                  var balance = obj.balance;
+                  return ListView.builder(
+                      itemCount: balance.length,
+                      itemBuilder: ((context, index) {
+                        return Bill(
+                          title: balance[index].title,
+                          type: balance[index].type,
+                          amount: balance[index].amount,
+                          date: balance[index].date,
+                        );
+                      })
+                  );
+                }),
+              ),
+            ),
           ],
         ),
       ),
@@ -80,7 +101,18 @@ class _MyBalancePageState extends State<MyBalancePage> {
 // padding: const EdgeInsets.all(10),
 
 class Bill extends StatelessWidget {
-  Bill({super.key});
+  final String? title;
+  final String type;
+  final num amount;
+  final String date;
+
+  const Bill({
+    super.key,
+    this.title,
+    required this.type,
+    required this.amount,
+    required this.date,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +120,7 @@ class Bill extends StatelessWidget {
       width: 320,
       height: 70,
       padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -99,15 +132,15 @@ class Bill extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Title',
-                style: TextStyle(
+                title ?? '',
+                style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 20,
                 ),
               ),
               Text(
-                'Date',
-                style: TextStyle(
+                date,
+                style: const TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 11,
                 ),
@@ -115,8 +148,11 @@ class Bill extends StatelessWidget {
             ],
           ),
           Text(
-            '\$5,000',
+            '\$$amount',
             style: TextStyle(
+              color: type == 'TypeBill.income'
+                  ? Colors.green
+                  : Colors.red,
               fontFamily: 'Montserrat',
               fontSize: 20,
             ),
