@@ -10,8 +10,9 @@ class BillProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  removeBill(index){
-    balance.removeAt(index);
+  removeBill(position){
+    balance.removeAt(position);
+    notifyListeners();
   }
 
   getTotal(){

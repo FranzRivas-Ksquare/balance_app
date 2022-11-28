@@ -84,11 +84,24 @@ class _MyBalancePageState extends State<MyBalancePage> {
                   return ListView.builder(
                       itemCount: balance.length,
                       itemBuilder: ((context, index) {
-                        return Bill(
-                          title: balance[index].title,
-                          type: balance[index].type,
-                          amount: balance[index].amount,
-                          date: balance[index].date,
+                        return Dismissible(
+                          key: ValueKey(balance[index]),
+                          onDismissed: (direction) {
+                            Provider.of<BillProvider>(
+                                context,
+                                listen: false)
+                                .removeBill(index);
+                            Provider.of<BillProvider>(
+                                context,
+                                listen: false)
+                                .getTotal();
+                          },
+                          child: Bill(
+                            title: balance[index].title,
+                            type: balance[index].type,
+                            amount: balance[index].amount,
+                            date: balance[index].date,
+                          ),
                         );
                       })
                   );
