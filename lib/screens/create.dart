@@ -126,6 +126,12 @@ class _CreateBillState extends State<CreateBill> {
                                 context,
                                 listen: false)
                                 .addBill(register);
+
+                            Provider.of<BillProvider>(
+                                context,
+                                listen: false)
+                                .getTotal();
+
                             Navigator.pop(context);
 
                           }

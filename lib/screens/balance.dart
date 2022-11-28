@@ -9,7 +9,6 @@ class MyBalancePage extends StatefulWidget {
 }
 
 class _MyBalancePageState extends State<MyBalancePage> {
-  late String balance = '\$10,000';
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +37,18 @@ class _MyBalancePageState extends State<MyBalancePage> {
                         fontWeight: FontWeight.w500
                     )
                   ),
-                  Text(
-                    '$balance USD',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 37,
+                  Consumer<BillProvider>(
+                    builder: ((context, obj, child) {
+                      var total = obj.total;
+                    return Text(
+                      '\$$total USD',
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 37,
+                      ),
+                    );}
                     ),
                   ),
                   const Expanded(child: SizedBox(height: 1)),
