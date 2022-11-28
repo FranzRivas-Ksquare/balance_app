@@ -13,7 +13,7 @@ class _MyBalancePageState extends State<MyBalancePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEEEEEE),
+      backgroundColor: const Color(0xFFFAF8F4),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -23,7 +23,7 @@ class _MyBalancePageState extends State<MyBalancePage> {
               height: 300,
               margin: const EdgeInsets.only(bottom: 20),
               padding: const EdgeInsets.fromLTRB(0, 90, 0, 50),
-              color: Colors.teal,
+              color: const Color(0xFF56B38F),
               child: Column(
                 //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,7 +64,7 @@ class _MyBalancePageState extends State<MyBalancePage> {
                         child: const Text(
                           'Create',
                           style: TextStyle(
-                            color: Colors.teal,
+                            color: Color(0xFF56B38F),
                             fontSize: 17,
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.w500,
@@ -81,7 +81,9 @@ class _MyBalancePageState extends State<MyBalancePage> {
               child: Consumer<BillProvider>(
                 builder: ((context, obj, child) {
                   var balance = obj.balance;
-                  return ListView.builder(
+                  return balance.isEmpty
+                      ? const Center(child: Text('No Data Found'))
+                      : ListView.builder(
                       itemCount: balance.length,
                       itemBuilder: ((context, index) {
                         return Dismissible(

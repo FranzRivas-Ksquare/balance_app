@@ -29,7 +29,8 @@ class _CreateBillState extends State<CreateBill> {
   Widget build(BuildContext context){
 
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: const Color(0xFFFAF8F4),
+      appBar: AppBar(foregroundColor: const Color(0xFFFFFFFF)),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -71,7 +72,7 @@ class _CreateBillState extends State<CreateBill> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Title',
-                          prefixIcon: Icon(Icons.title, color: Colors.teal,)
+                          prefixIcon: Icon(Icons.title, color: Color(0xFF56B38F),)
                       ),
                     ),
                   ),
@@ -89,7 +90,7 @@ class _CreateBillState extends State<CreateBill> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Amount',
-                          prefixIcon: Icon(Icons.money, color: Colors.teal,)
+                          prefixIcon: Icon(Icons.money, color: Color(0xFF56B38F),)
                       ),
                     ),
                   ),
@@ -100,7 +101,7 @@ class _CreateBillState extends State<CreateBill> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Description',
-                          prefixIcon: Icon(Icons.description, color: Colors.teal,)
+                          prefixIcon: Icon(Icons.description, color: Color(0xFF56B38F),)
                       ),
                     ),
                   ),
