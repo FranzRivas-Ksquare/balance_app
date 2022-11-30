@@ -27,6 +27,9 @@ void main() {
       await widgetTester.enterText(find.byKey(const Key('title')), 'Salary');
       await widgetTester.enterText(find.byKey(const Key('amount')), '10000');
 
+      // The Keyboard make a overflow, because don't hide at time before change to the balance's screen.
+      // This show a error in the test.
+      // I try to make a tap on appbar to hide the keyboard but don't work.
       await widgetTester.tap(appbar);
 
       await widgetTester.tap(submit);
