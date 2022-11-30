@@ -119,6 +119,8 @@ class _CreateBillState extends State<CreateBill> {
                       margin: const EdgeInsets.fromLTRB(10, 15, 10, 5),
                       child: ElevatedButton(
                           onPressed: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
+
                             if(_formKey.currentState!.validate()) {
 
                               Bill register = Bill(

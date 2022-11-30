@@ -15,7 +15,7 @@ void main() {
 
       var create = find.byKey(const Key('createBill'));
       //var expense = find.byKey(const Key('expense'));
-      var income = find.byKey(const Key('expense'));
+      var income = find.byKey(const Key('income'));
       var appbar = find.byKey(const Key('appbar'));
       var submit = find.byKey(const Key('submit'));
 
