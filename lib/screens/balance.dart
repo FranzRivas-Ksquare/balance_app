@@ -55,6 +55,7 @@ class _MyBalancePageState extends State<MyBalancePage> {
                   SizedBox(
                     width: 100,
                     child: ElevatedButton(
+                      key: const Key('createBill'),
                         onPressed: () {
                           Navigator.of(context).pushNamed('/create-bill');
                         },
@@ -87,7 +88,7 @@ class _MyBalancePageState extends State<MyBalancePage> {
                       itemCount: balance.length,
                       itemBuilder: ((context, index) {
                         return Dismissible(
-                          key: ValueKey(balance[index]),
+                          key: const ValueKey('dismissible'),
                           onDismissed: (direction) {
                             Provider.of<BillProvider>(
                                 context,
