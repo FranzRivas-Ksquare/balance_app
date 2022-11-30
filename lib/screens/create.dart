@@ -119,6 +119,7 @@ class _CreateBillState extends State<CreateBill> {
                       margin: const EdgeInsets.fromLTRB(10, 15, 10, 5),
                       child: ElevatedButton(
                           onPressed: () {
+                            // try to onfocus the keyboard
                             FocusManager.instance.primaryFocus?.unfocus();
 
                             if(_formKey.currentState!.validate()) {
